@@ -1,0 +1,30 @@
+<app-header></app-header>
+ 
+<div class="container" style="width: 450px!important; margin-top: 10%">  
+  <div class="jumbotron">
+    <h2>Login To Your Account</h2><hr>
+    
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+
+    <div class="login_form" style="margin-top: 50px;">
+      <form class="form" (ngSubmit)="login()">
+        <div class="row form-row">
+          <div class="col-lg-1"> <i class="fa fa-user fa-3x"> </i> </div>
+          <div class="col-lg-11"> <input type="email"  [(ngModel)]="userForm.email" 
+          name="userName" size="40" placeholder="Enter your Email" 
+          class="form-control" required="true"> </div>
+        </div>
+        <div class="row form-row">
+          <div class="col-lg-1"> <i class="fa fa-lock fa-3x"> </i> </div>
+          <div class="col-lg-11"> <input type="password" class="form-control" [(ngModel)]="userForm.password"  name="password" size="40" placeholder="Enter your password" required="true"> </div>
+        </div>
+        <div class="row">
+          <!-- <div class="col-sm-1"><i class="fa fa-sign-in pull-right"></i></div> -->
+          <div class="col-lg-11" style="align-self: center;">
+            <input type="submit" value="submit" class="btn btn-lg btn-success pull-right">
+          </div>
+        </div>  
+      </form>
+    </div>
+  </div>
+</div>

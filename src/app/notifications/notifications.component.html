@@ -1,0 +1,42 @@
+<div class="" style="background-color: white;padding: 20px; font-size: 15px;">
+  <div class="notification_panel"  *ngFor="let notification of notifications">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-3" >
+            <div class="row" style="margin-left: 30px;">
+              <small><a href="#"> <i class="fa fa-clock-o"> </i> Time </a></small>
+            </div><br/>
+            <div class="row" style="margin-left: 30px;">
+              <h4>{{notification.created_at | date}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-bell-o"> </i> From </a></small>
+            </div><br/>
+            <div class="row">
+              <h4>{{notification.notifier}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-user"> </i>  Role </a></small>
+            </div><br/>
+            <div class="row">
+              <h4>{{notification.notifier_type}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-tasks"> </i>  Type </a></small>
+            </div><br/>
+            <div class="row">
+              <h4>{{notification.notification_type}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

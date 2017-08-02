@@ -1,0 +1,14 @@
+<app-header></app-header>
+<div class="container">
+  <ul class="nav nav-pills "  style="font-size: 15px;">
+    <li role="presentation" class="active"><a [routerLink]="['open-jobs']"> Open Jobs </a></li>
+    <li role="presentation"  class="active"><a [routerLink]="['interviews']"> Interviews </a></li>
+    <li role="presentation"  class="active"><a [routerLink]="['users']"> Users </a></li>
+    <li role="presentation"  class="active"><a [routerLink]="['notifications']"> Notifications </a></li>
+  </ul>
+</div>
+<hr>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

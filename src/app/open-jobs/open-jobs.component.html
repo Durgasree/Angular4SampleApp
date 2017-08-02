@@ -1,0 +1,55 @@
+<div class="" style="background-color: white;padding: 20px; font-size: 15px;">
+  <div class="notification_panel"  *ngFor="let job of jobs">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-3" >
+            <div class="row" style="margin-left: 10px;">
+              <small><a href="#"> <i class="fa fa-user"> </i> {{job.recruiter_name}} </a></small>
+            </div><br/>
+            <div class="row" style="margin-left: 10px; margin-right: 5px;">
+              <h4>{{job.title}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-calendar-o"> </i> Created Date </a></small>
+            </div><br/>
+            <div class="row">
+              <h4>{{job.created_at  | date}} </h4>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-calendar-o"> </i>  Closing Date </a></small>
+            </div><br/>
+            <div class="row">
+              <h4> {{job.due_at | date}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-users"> </i>  Candidates  </a></small>
+            </div><br/>
+            <div class="row">
+              <h4 style="margin-left: 10%"> <span class="badge">{{ job.candidates_count}}</span></h4>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-users"> </i>  Interviewers  </a></small>
+            </div><br/>
+            <div class="row">
+              <h4 style="margin-left: 20%"> <span class="badge">{{ job.interviewers_count}}</span></h4>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <div class="row"  style="margin-left: 30px;">
+              <button type="button"  class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-gear"></span> Actions </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

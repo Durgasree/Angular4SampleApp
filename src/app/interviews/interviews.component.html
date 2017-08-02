@@ -1,0 +1,55 @@
+<div class="" style="background-color: white;padding: 20px; font-size: 15px;">
+  <div class="notification_panel"  *ngFor="let interview of interviews">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-3" >
+            <div class="row" style="margin-left: 10px;">
+              <small><a href="#"> <i class="fa fa-bars"> </i> Job Title  </a></small>
+            </div><br/>
+            <div class="row" style="margin-left: 30px;">
+              <h4>{{interview.job_details.title}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-calendar-o"> </i> Interview Date </a></small>
+            </div><br/>
+            <div class="row">
+              <h4>{{interview.interview_date_time  | date}} </h4>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-id-badge"> </i>  Recruiter </a></small>
+            </div><br/>
+            <div class="row">
+              <h4> {{interview.recruiter_name }} </h4>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-user"> </i>  Candidate  </a></small>
+            </div><br/>
+            <div class="row">
+              <h4>{{ interview.candidate.full_name}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <div class="row">
+              <small><a href="#"> <i class="fa fa-user"> </i>  Interviewer  </a></small>
+            </div><br/>
+            <div class="row">
+              <h4> {{ interview.interviewers[0]}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <div class="row"  style="margin-left: 30px;">
+              <button type="button"  class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-gear"></span> Actions </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+<ul class="nav nav-tabs "  style="font-size: 15px;">
+  <li role="presentation" class="active"><a [routerLink]="['recruiters']">  Recruiters </a></li>
+  <li role="presentation"  class="active"><a [routerLink]="['active-interviewers']"> Active Interviewers </a></li>
+  <li role="presentation"  class="active"><a [routerLink]="['pending-interviewers']"> Pending Interviewers </a></li>
+  <li role="presentation"  class="active"><a [routerLink]="['pending-registrations']"> Pending Registrations </a></li>
+  <li role="presentation"  class="active"><a [routerLink]="['deactivated-users']"> Deactivated Users </a></li>
+</ul>
+<hr>
+<div class="container" style="font-size: 15px;">
+  <router-outlet></router-outlet>
+</div>
