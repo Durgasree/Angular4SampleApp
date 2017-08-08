@@ -3,6 +3,9 @@
 /*@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";*/
 
+#my-div .ngui-datetime-picker {
+  background-color: blue;
+}
 
 table
 {

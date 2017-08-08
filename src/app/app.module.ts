@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import {RouterModule,Routes} from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { SessionComponent } from './session/session.component';
 import { OpenJobsComponent } from './open-jobs/open-jobs.component';
@@ -17,7 +19,6 @@ import { ActiveInterviewersComponent } from './active-interviewers/active-interv
 import { PendingInterviewersComponent } from './pending-interviewers/pending-interviewers.component';
 import { PendingRegistrationsComponent } from './pending-registrations/pending-registrations.component';
 import { DeactivatedUsersComponent } from './deactivated-users/deactivated-users.component';
-
 
 
 const routes: Routes = [
@@ -54,12 +55,14 @@ const routes: Routes = [
     PendingInterviewersComponent,
     PendingRegistrationsComponent,
     DeactivatedUsersComponent
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     HttpModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(
       routes
       // { enableTracing: true } // <-- debugging purposes only

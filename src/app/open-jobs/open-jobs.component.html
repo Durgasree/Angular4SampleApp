@@ -1,8 +1,57 @@
 <div class="" style="background-color: white;padding: 20px; font-size: 15px;">
-  <div class="notification_panel"  *ngFor="let job of jobs">
+  <ng-template #content let-c="close" let-d="dismiss" size="lg">
+  <div class="modal-header">
+    <div class="col-lg-11"><h3 class="modal-title">Add Candidate {{job_id}}</h3></div>
+    <div class="col-lg-1 pull-right">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <!--<hr>-->
+  </div>
+  <div class="modal-body">
+    <form class="form" (ngSubmit)="addCandidate(job_id)">
+      <div class="row form-row" style="margin:3%">
+        <input type="text"  [(ngModel)]="newCandidateForm.firstName" name="firstName" size="40" placeholder="firstName" class="form-control" required="true"> 
+        <input type="text"  [(ngModel)]="newCandidateForm.lastName" name="lastName" size="40" placeholder="lastName" class="form-control" required="true"> 
+        <input type="text"  [(ngModel)]="newCandidateForm.phone" name="phone" size="40" placeholder="phone" class="form-control" required="true"> 
+        <input type="email"  [(ngModel)]="newCandidateForm.email" name="email" size="40" placeholder="email" class="form-control" required="true"> 
+        <!--<input type="text"  [(ngModel)]="newCandidateForm.firstName" name="firstName" size="40" placeholder="firstName" class="form-control" required="true"> -->
+        <div class="row">
+          <div class="col-lg-8"><br><h4>Upload Resume (pdf doc docx rtf txt odt)</h4></div>
+          <div class="col-lg-4"><button type="button" class="btn btn-success btn-sm" open-files="" filetype="brief_bio_file">Choose File</button></div>
+        </div>
+        <div class="row">
+          <h4 style="margin:3%">Candidate Report Due By</h4>
+            <div class="input-group" style="margin:3%">
+              <input [(ngModel)]="newCandidateForm.datetime" ngui-datetime-picker date-only="true" />
+              <!--<input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="newCandidateForm.datetime" ngbDatepicker #d="ngbDatepicker">
+              <button class="input-group-addon" (click)="d.toggle()" type="button">
+                <img src="/assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+              </button>-->
+              <!--<ngb-timepicker [(ngModel)]="newCandidateForm.datetime"></ngb-timepicker>-->
+            </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-lg-5"><input type="submit" class="btn btn-primary btn-sm" value="Add Candidate Availability"></div>
+        <div class="col-lg-6"><button class="btn btn-primary btn-sm"><i class="fa fa-plus"> </i> Add One More Candidate</button></div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)"> Filter Jobs  <i class="fa fa-search"> </i></button>
+<hr>
+
+
+
+
+  <div class="notification_panel"  *ngFor="let job of jobs">   
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class="row">
+        <div class="row" (click)="(job.isCollapsed = !job.isCollapsed)" [attr.aria-expanded]="!job.isCollapsed" attr.aria-controls="jobDetails_{{job.id}}" on-click="getJobFullDetails(job.id)">
           <div class="col-lg-3" >
             <div class="row" style="margin-left: 10px;">
               <small><a href="#"> <i class="fa fa-user"> </i> {{job.recruiter_name}} </a></small>
@@ -44,12 +93,126 @@
             </div>
           </div>
           <div class="col-lg-1">
-            <div class="row"  style="margin-left: 30px;">
-              <button type="button"  class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-gear"></span> Actions </button>
+            <div class="row"  style="margin-left: 30px;margin-right: 30px;">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-sm btn-primary" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-gear"> </i> Actions</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+                  <button class="dropdown-item" (click)="open(content,job.id)">Add Candidate</button>
+                  <button class="dropdown-item">Add Interviewer</button>
+                  <button class="dropdown-item">Full Job Details</button>
+                  <button class="dropdown-item">Edit Job</button>
+                  <button class="dropdown-item">Swoop Invitees</button>
+                  <button class="dropdown-item">Close Job</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div attr.id="jobDetails_{{job.id}}" [ngbCollapse]="!job.isCollapsed">
+      <div class="panel-heading">
+        <div class="row ">
+          <div class="col-lg-6">
+            <div class="row">Required Skill Sets</div>
+            <div class="row">
+                {{data.job.skillset}}
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">Optional Skill Sets</div>
+            <div class="row">{{data.job.preferred_skillset}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Candidate</small>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Reports</small>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Interviewers</small>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Actions</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row" *ngFor="let candidate of data.job.candidates">
+          <div class="col-lg-3">
+            <div class="row">
+              <h4>{{candidate.full_name}}</h4>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Reports</small>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Interviewers</small>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Actions</small>
+            </div>
+          </div>
+        </div>
+      
+
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Interviewer</small>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <small>Skills</small>
+            </div>
+          </div>
+
+          <div class="col-lg-2">
+            <div class="row">
+              <small>% Match</small>
+            </div>
+          </div>
+
+          <div class="col-lg-2">
+            <div class="row">
+              <small>Action</small>
+            </div>
+          </div>
+
+          <div class="col-lg-2">
+            <div class="row">
+              <small>Status</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-footer"></div>
+    </div>
   </div>
 </div>
+
+
